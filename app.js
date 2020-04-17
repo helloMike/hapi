@@ -7,8 +7,10 @@ const Hapi = require('hapi');
 //配置文件
 const config = require('./config');
 
-//路由文件
+//路由文件api
 const routesHelloHapi = require('./routes/hello-hapi');
+const routesShopApi = require('./routes/shop');
+const routesOrderApi = require('./routes/order');
 
 // 引入自定义的 hapi-swagger 插件配置
 const pluginHapiSwagger = require('./plugins/hapi-swagger');
@@ -27,6 +29,8 @@ const init = async ()=>{
     server.route([
         //创建一个简单的hello api接口
         ...routesHelloHapi,
+        ...routesShopApi,
+        ...routesOrderApi
     ]);
     //注册插件
     await server.register([
