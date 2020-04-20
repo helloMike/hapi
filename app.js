@@ -11,12 +11,17 @@ const config = require('./config');
 const routesHelloHapi = require('./routes/hello-hapi');
 const routesShopApi = require('./routes/shop');
 const routesOrderApi = require('./routes/order');
+const routesUsersApi = require('./routes/users');
 
 /*----------------插件-------------------*/
 // 引入自定义的 hapi-swagger 插件配置
 const pluginHapiSwagger = require('./plugins/hapi-swagger');
 //引入分页插件
 const pluginHapiPagination = require('./plugins/hapi-pagination');
+//引入jwt接口认证 hapi-jwt-auth2插件
+const hapiAuthJWT2 = require('hapi-auth-jwt2');
+const pluginHapiAuthJWT2 = require('./plugins/hapi-auth-jwt2');
+
 //创建服务
 const server = new Hapi.Server();
 
@@ -33,7 +38,8 @@ const init = async ()=>{
         //创建一个简单的hello api接口
         ...routesHelloHapi,
         ...routesShopApi,
-        ...routesOrderApi
+        ...routesOrderApi,
+        ...routesUsersApi
     ]);
     //注册插件
     await server.register([
