@@ -1,9 +1,8 @@
 const Joi = require('joi');
-const { paginationDefine } = require('../utils/router-helper');
+const { paginationDefine,jwtHeaderDefine} = require('../utils/router-helper');
 
 // 引入 models
 const models = require("../models");
-
 const GROUP_NAME = 'shops';
 
 module.exports = [
@@ -25,7 +24,9 @@ module.exports = [
         config:{
             tags:['api',GROUP_NAME],
             description: '获取店铺列表',
+            auth: false,
             validate:{
+                ...jwtHeaderDefine,
                 query: {
                     ...paginationDefine
                 }
@@ -52,9 +53,11 @@ module.exports = [
             reply({results,totalCount});
         },
         config:{
+            auth: false,
             tags:['api',GROUP_NAME],
             description:'获取店铺的商品列表',
             validate:{
+                ...jwtHeaderDefine,
                 params: {
                     shopId: Joi.string().required().description('店铺的id'),
                 },

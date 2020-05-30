@@ -5,7 +5,6 @@ if (process.env.NODE_ENV === 'production') {
     require('env2')('./.env');
 }
 
-
 const { env } = process;
 
 module.exports = {
@@ -20,7 +19,6 @@ module.exports = {
         "operatorsAliases": false,  // 此参数为自行追加，解决高版本 sequelize 连接警告
         "timezone": '+08:00',
         "charset": 'utf8'
-
     },
     "production": {
         "username": env.MYSQL_USERNAME,

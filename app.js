@@ -45,8 +45,10 @@ const init = async ()=>{
     await server.register([
         // 为系统使用 hapi-swagger
         ...pluginHapiSwagger,
-        pluginHapiPagination
+        pluginHapiPagination,
+        hapiAuthJWT2
     ]);
+    pluginHapiAuthJWT2(server);
     //启动服务
     await server.start();
     console.log(`Server running at: ${server.info.uri}`);
