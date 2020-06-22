@@ -5,5 +5,6 @@ module.exports = {
     port:env.PORT,
     host:env.HOST,
     wxAppid:env.WXAPPID,
-    wxSecret:env.WXSECRET
+    wxSecret:env.WXSECRET,
+    jwtSecret:env.JWT_SECRET
 }
